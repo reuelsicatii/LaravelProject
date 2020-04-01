@@ -1,1 +1,0 @@
-This is a get::Static Routing - Static Page
