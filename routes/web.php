@@ -30,8 +30,13 @@ Route::get('/DynamicRoute/{name}', function ($name) {
     return view('pages.page02')->with('name', $name);
 });
 
+Route::get('/home', 'PagesController@home');
+
 Route::get('/index', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 
 Route::get('/services', 'PagesController@services');
+
+
+
