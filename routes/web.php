@@ -31,12 +31,11 @@ Route::get('/DynamicRoute/{name}', function ($name) {
 });
 
 Route::get('/home', 'PagesController@home');
-
 Route::get('/index', 'PagesController@index');
-
 Route::get('/about', 'PagesController@about');
-
 Route::get('/services', 'PagesController@services');
+
+Route::resource('post','PostController');
 
 
 
