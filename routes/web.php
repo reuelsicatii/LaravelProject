@@ -30,12 +30,12 @@ Route::get('/DynamicRoute/{name}', function ($name) {
     return view('pages.page02')->with('name', $name);
 });
 
-Route::get('/home', 'PagesController@home');
-Route::get('/index', 'PagesController@index');
-Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@services');
+//Route::get('/pages/home', 'PagesController@home');
+Route::get('/pages/index', 'PagesController@index');
+Route::get('/pages/about', 'PagesController@about');
+Route::get('/pages/services', 'PagesController@services');
 
 Route::resource('post','PostController');
 
-
-
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
