@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\Category;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     
     public function __construct()
     {
@@ -21,19 +20,8 @@ class PostController extends Controller
     
     public function index()
     {
-        //$posts = Post::where('user_id', '=' ,auth()->user()->id);
-        //$posts = Post::where('user_id', '=' ,'1');
-        //return view('post.index')->with('posts',$posts);
-
-        //echo $posts;
-        
-        //$posts = Post::find(auth()->user()->id);        
-        //Sreturn $posts;
-        //return auth()->user()->id;
-        
-        $posts = Post::all();
-        //return $posts;
-        return view('post.index')->with('posts',$posts);
+        $categories = Category::all();
+        return view('category.index')->with('categories',$categories);
     }
 
     /**
@@ -43,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('category.create');
     }
 
     /**
@@ -56,7 +44,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required',
+            'description' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ]);
         
@@ -76,15 +64,15 @@ class PostController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
         
-        // Create Post
-        $post = new Post;
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->save();
+        // Create Category
+        $category = new Category;
+        $category->title = $request->input('title');
+        $category->body = $request->input('description');
+        $category->user_id = auth()->user()->id;
+        $category->cover_image = $fileNameToStore;
+        $category->save();
         
-        return redirect('/post')->with('success', 'Post Created');
+        return redirect('/category')->with('success', 'Category Created');
     }
 
     /**
@@ -95,8 +83,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('post.show')->with('post',$post);
+        $category = Category::find($id);
+        return view('category.show')->with('category',$category);
     }
 
     /**
@@ -107,12 +95,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
-        if(auth()->user()->id !== $post->user_id){
-            return redirect('/post')->with('error','Unauthorized Page');
+        $category = Category::find($id);
+        if(auth()->user()->id !== $category->user_id){
+            return redirect('/category')->with('error','Unauthorized Page');
         }
         
-        return view('post.edit')->with('post',$post);
+        return view('category.edit')->with('category',$category);
     }
 
     /**
@@ -128,7 +116,7 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]);
-        $post = Post::find($id);
+        $category = Category::find($id);
         // Handle File Upload
         if($request->hasFile('cover_image')){
             // Get filename with the extension
@@ -142,18 +130,18 @@ class PostController extends Controller
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
             // Delete file if exists
-            Storage::delete('public/cover_images/'.$post->cover_image);
+            Storage::delete('public/cover_images/'.$category->cover_image);
         }
         
-        // Update Post
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        // Update Category
+        $category->title = $request->input('title');
+        $category->body = $request->input('body');
         if($request->hasFile('cover_image')){
-            $post->cover_image = $fileNameToStore;
+            $category->cover_image = $fileNameToStore;
         }
-        $post->save();
+        $category->save();
         
-        return redirect('/post')->with('success', 'Post Updated');
+        return redirect('/category')->with('success', 'Category Updated');
     }
 
     /**
@@ -164,24 +152,24 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $category = Category::find($id);
         
-        //Check if post exists before deleting
-        if (!isset($post)){
-            return redirect('/post')->with('error', 'No Post Found');
+        //Check if category exists before deleting
+        if (!isset($category)){
+            return redirect('/category')->with('error', 'No Category Found');
         }
         
         // Check for correct user
-        if(auth()->user()->id !==$post->user_id){
-            return redirect('/post')->with('error', 'Unauthorized Page');
+        if(auth()->user()->id !==$category->user_id){
+            return redirect('/category')->with('error', 'Unauthorized Page');
         }
         
-        if($post->cover_image != 'noimage.jpg'){
+        if($category->cover_image != 'noimage.jpg'){
             // Delete Image
-            Storage::delete('public/cover_images/'.$post->cover_image);
+            Storage::delete('public/cover_images/'.$category->cover_image);
         }
         
-        $post->delete();
-        return redirect('/post')->with('success', 'Post Removed');
+        $category->delete();
+        return redirect('/category')->with('success', 'Category Removed');
     }
 }

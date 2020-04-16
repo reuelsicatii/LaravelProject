@@ -1,41 +1,43 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Home</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">Home</div>
 
-                <div class="panel-body">
-                    <a href="/post/create" class="btn btn-primary">Create Post</a>
-                    <h3>Your Blog Posts</h3>
-                    @if(count($posts) > 0)
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Title</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            @foreach($posts as $post)
-                                <tr>
-                                    <td>{{$post->title}}</td>
-                                    <td><a href="/post/{{$post->id}}/edit" class="btn btn-default">Edit</a></td>
-                                    <td>
-                                        {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                            {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                                        {!!Form::close()!!}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    @else
-                        <p>You have no posts</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="panel-body">
+					<a href="/post/create" class="btn btn-primary">Create Post</a>
+					@if(count($posts) > 0) 
+
+					<h3>Your Blog Posts</h3>
+					<table class="table table-striped">
+						<tr>
+							<th>Title</th>
+							<th></th>
+							<th></th>
+						</tr>
+						@foreach($posts as $post)
+
+						<tr>
+							<td>{{$post->title}}</td>
+							@if(!Auth::guest()) 
+							@if(Auth::user()->id == $post->user_id)
+							<td><a href="/post/{{$post->id}}/edit" class="btn btn-default">Edit</a></td>
+							<td>{!!Form::open(['action' => ['PostController@destroy',
+								$post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+								{{Form::hidden('_method', 'DELETE')}} {{Form::submit('Delete',
+								['class' => 'btn btn-danger'])}} {!!Form::close()!!}</td>
+							@endif 
+							@endif 
+						</tr>
+						@endforeach
+					</table>
+					@else
+					<p>You have no posts</p>
+					@endif
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
