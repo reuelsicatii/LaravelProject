@@ -45,7 +45,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Category');
     }
     
-    public function services(){
-        return $this->hasMany('App\Services');
-    }
+//     public function services(){
+//         return $this->hasMany('App\Services');
+//     }
 }

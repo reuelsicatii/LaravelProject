@@ -40,3 +40,4 @@ Route::get('/pages/services', 'PagesController@services');
 
 Route::resource('post','PostController');
 Route::resource('category','CategoryController');
+Route::resource('service','ServiceController');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Category;
+use App\Services;
 
 class CategoryController extends Controller
 {
@@ -21,7 +23,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('category.index')->with('categories',$categories);
+        $services = Services::all();
+        return view('category.index')->with('categories',$categories)->with('services',$services);
     }
 
     /**
@@ -67,7 +70,7 @@ class CategoryController extends Controller
         // Create Category
         $category = new Category;
         $category->title = $request->input('title');
-        $category->body = $request->input('description');
+        $category->description = $request->input('description');
         $category->user_id = auth()->user()->id;
         $category->cover_image = $fileNameToStore;
         $category->save();
@@ -114,7 +117,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'description' => 'required'
         ]);
         $category = Category::find($id);
         // Handle File Upload
@@ -129,13 +132,15 @@ class CategoryController extends Controller
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            
             // Delete file if exists
             Storage::delete('public/cover_images/'.$category->cover_image);
+            
         }
         
         // Update Category
         $category->title = $request->input('title');
-        $category->body = $request->input('body');
+        $category->description = $request->input('description');
         if($request->hasFile('cover_image')){
             $category->cover_image = $fileNameToStore;
         }
