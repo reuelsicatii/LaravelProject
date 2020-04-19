@@ -35,16 +35,7 @@
 			<div class="card-body">
 				<h5 class="card-title">{{$service->title}}</h5>
 				<p class="card-text">{{$service->description}}</p>
-					@if(!Auth::guest()) 
-                	@if(Auth::user()->id == $service->user_id)
-                    {!!Form::open(['action' => ['ServiceController@destroy', $service->id], 'method' => 'POST', 'class' => 'pull-left'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{Form::submit('Delete', ['class' => 'btn btn-default'])}}
-                    {!!Form::close()!!}
-                    
-                    <a class="btn btn-default" href="/service/{{$service->id}}/edit">Edit</a>
-                	@endif 
-                	@endif 
+				<a href="/service/{{$service->id}}" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 	@endif
