@@ -134,7 +134,9 @@ class CategoryController extends Controller
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
             
             // Delete file if exists
-            Storage::delete('public/cover_images/'.$category->cover_image);
+            if ($category->cover_image != 'noimage.jpg') {
+                Storage::delete('public/cover_images/'.$category->cover_image);
+            }
             
         }
         

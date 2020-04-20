@@ -100,7 +100,13 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $service = Services::find($id);
+        if(auth()->user()->id !== $service->user_id){
+            return redirect('/category')->with('error','Unauthorized Page');
+        }
+        
+        return view('service.edit')->with('categories',$categories)->with('service',$service);
     }
 
     /**
@@ -112,7 +118,43 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
+        ]);    
+        
+        $service = Services::find($id);
+        // Handle File Upload
+        if($request->hasFile('cover_image')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            
+            // Delete file if exists
+            if ($service->cover_image != 'noimage.jpg') {
+                Storage::delete('public/cover_images/'.$service->cover_image);
+            }
+        }
+        
+        // Update Service         
+        $service->title = $request->input('title');
+        $service->description = $request->input('description');
+        $service->user_id = auth()->user()->id;
+        $service->category_id = $request->input('category_id');
+        if($request->hasFile('cover_image')){
+            $service->cover_image = $fileNameToStore;
+        }
+        $service->save();
+        return redirect('/category')->with('success', 'Service Updated');
     }
 
     /**
