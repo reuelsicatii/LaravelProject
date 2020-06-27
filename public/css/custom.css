@@ -1,0 +1,134 @@
+/* Flex - Container A*/
+div ul.container-a {
+	display: flex;
+	background-color: #333;
+}
+
+div ul.container-a a:first-child {
+	font-size: 50px;
+	background-color: #444;
+}
+
+div ul.container-a a.others {
+	padding-top: 20px;
+}
+
+div ul.container-a a {
+	flex: 1;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+}
+
+/* Flex - Container B*/
+div ul.container-b {
+	display: flex;
+	background-color: #333;
+	flex-flow: row;
+	justify-content: flex-end;
+	align-items: center;
+	height: 80px;
+	flex-flow: row;
+}
+
+div ul.container-b .a:first-child {
+	font-size: 50px;
+	background-color: #444;
+}
+
+div ul.container-b a {
+	flex: 1;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+}
+
+/* Flex - Container C*/
+div ul.container-c {
+	display: flex;
+	background-color: #333;
+	flex-flow: row;
+	justify-content: center;
+}
+
+div ul.container-c .box {
+	height: 100px;
+	flex: 0 0 100px;
+}
+
+.one {
+	display: flex;
+	flex-flow: row;
+	background: red;
+	position: relative;
+}
+
+.one .one {
+	color: #fff;
+	position: absolute;
+	top: 50%;
+}
+
+.two {
+	background: blue;
+}
+
+.three {
+	background: green;
+}
+
+/* Flex - Container D*/
+div ul.container-d {
+	display: flex;
+	background-color: #333;
+	flex-flow: row;
+	justify-content: center;
+}
+
+div ul.container-d .box {
+	height: 80px;
+	flex: 0 0 100px;
+}
+
+.one {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+	background: red;
+
+}
+
+.one .one {
+	color: #fff;
+
+}
+
+.two {
+	background: blue;
+}
+
+.three {
+	background: green;
+}
+
+
+
+/* Float -Example */
+section, aside {
+	float: left;
+	width: 46%;
+	padding: 1%;
+	margin: 1%;
+	background: #f2f2f2;
+}
+
+.column2:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.column2 img {
+	float: right;
+}

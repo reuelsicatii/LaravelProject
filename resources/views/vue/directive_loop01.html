@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue Tutorial - Directive(Loop Rendering): V-For</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://app.laravel/css/custom.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<div class="container" id="main">
+		<br />
+		<h1>
+			<a :href="url">Directive(Loop Rendering): V-For</a>
+		</h1>
+		<br />
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Title</th>
+						<th scope="col">Body</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="SampleResponse in SampleResponses" :id="SampleResponse.id">
+						<th>{{SampleResponse.id}}</th>
+						<td>{{SampleResponse.title}}</td>
+						<td>{{SampleResponse.body}}</td>
+					</tr>
+				</tbody>
+			</table>		
+
+		</div>
+	</div>
+
+
+	<!-- <script src="http://app.laravel/js/custom.js"></script> -->
+	<script>
+		let vm = new Vue({
+
+			el : '#main',
+			data : {
+				url : "https://vuejs.org/v2/guide/list.html",
+				SampleResponses : [
+					{id: 1, title:'Title 01', body:'This is the body of the Desciption'},
+					{id: 2, title:'Title 02', body:'This is the body of the Desciption'},
+					{id: 3, title:'Title 03', body:'This is the body of the Desciption'},
+					{id: 4, title:'Title 04', body:'This is the body of the Desciption'},
+					{id: 5, title:'Title 05', body:'This is the body of the Desciption'},
+					{id: 6, title:'Title 06', body:'This is the body of the Desciption'}
+				]
+			}
+		})
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

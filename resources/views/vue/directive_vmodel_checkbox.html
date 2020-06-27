@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue Tutorial - Directive(Checkbox): V-Model</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://app.laravel/css/custom.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<div class="container" id="main">
+		<br />
+		<h1>
+			<a :href="url">Directive(Checkbox): V-Model</a>
+		</h1>
+		<br />
+		<div class="row">
+			<fieldset class="form-group">
+				<legend>Radio buttons</legend>
+				<div class="form-check">
+					<label class="form-check-label"> <input v-model="options"
+						type="checkbox" class="form-check-input" name="optionsRadios"
+						id="optionsRadios1" value="option-1" checked> Option one
+						is this and that&mdash;be sure to include why it's great
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label"> <input v-model="options"
+						type="checkbox" class="form-check-input" name="optionsRadios"
+						id="optionsRadios2" value="option-2"> Option two can be
+						something else and selecting it will deselect option one
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label"> <input v-model="options"
+						type="checkbox" class="form-check-input" name="optionsRadios"
+						id="optionsRadios3" value="option-3"> Option three is
+						disabled
+					</label>
+				</div>
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="form-group">
+				<legend>You Selected - Join</legend>
+				<p>{{options.join(', ')}}</p>
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="form-group">
+				<legend>You Selected - w/o Join</legend>
+				<p>{{options}}</p>
+			</fieldset>
+		</div>
+	</div>
+
+
+	<!-- <script src="http://app.laravel/js/custom.js"></script> -->
+	<script>
+		let vm = new Vue({
+
+			el : '#main',
+			data : {
+				options : [],
+				message : ''
+			}
+
+		})
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

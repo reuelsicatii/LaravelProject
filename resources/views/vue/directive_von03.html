@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue Tutorial - Directive(Events): V-On</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://app.laravel/css/custom.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<div class="container" id="main">
+		<br />
+		<h1>
+			<a :href="url">Directive(Events): V-On</a>
+		</h1>
+		<br />
+		<div class="row">
+			<div>
+
+				<p>{{counterMethod}}</p>
+				<button @click="counterMethod++">method button</button>
+				<br /> <br />
+
+				<p>{{counterComputed}}</p>
+				<button @click="counterComputed++">computed button</button>
+				<br /> <br />
+
+				<p>printTextComputed: {{printTextComputed}}</p>
+				<p>printTextMethod: {{printTextMethod()}}</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div>
+				<h1>Method vs Computer</h1>
+				<p>
+					Method are static functions usually used to react to events which
+					happen in the DOM and they accept arguments. They are incredibly
+					useful for connecting functionality to events, or even just
+					creating small parts of logic to be reused. You can call a method
+					inside another method, they are very versatile! Immagine to have a
+					candy dispenser with a display, to know how many candies are inside
+					you need to press a button.They are often used to run a
+					functionality from the DOM. <strong>You want to show an
+						output when a user click a button.</strong>
+					<br />
+					<br /> 
+					Computed don’t accept arguments and they are very handy for
+					composing new data from existing sources, they get dynamic values
+					based on other properties. <strong>Imagine the same dispenser but this on
+					the display has always the number of candies (updated) and you
+					don’t need to press any button.</strong>
+			</div>
+		</div>
+
+		<div class="row">
+			<div>
+				<h1>Explaination!</h1>
+				<p>
+					RESULT: If you followed the code you can see that when you click
+					the computed button both the functions printTextComputed() and
+					printTextMethod() are running but when you click the method button
+					only the function printTextMethod() will runs. <br />
+					<br /> Why? Because it’s like that: methods don’t know if the
+					values used in the function changed so they need to run everytime
+					to check. computed properties know if the values used in the
+					function changed so they don’t need to run everytime to check, only
+					once!
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <script src="http://app.laravel/js/custom.js"></script> -->
+	<script>
+		let vm = new Vue({
+
+			el : '#main',
+			data: {	
+				url: "https://medium.com/notonlycss/the-difference-between-computed-and-methods-in-vue-js-9cb05c59ed98",
+			    counterComputed: 0,
+			    counterMethod: 0
+			},
+			
+			computed: 
+			{
+			  printTextComputed() {
+			    console.log("counter printed from computed:", this.counterComputed);
+			    return this.counterComputed;
+			  }
+			},
+			
+			methods: {
+			  printTextMethod() {
+			    console.log("counter printed from method:", this.counterMethod);
+			    return this.counterMethod;
+			  }
+			}
+
+		})
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

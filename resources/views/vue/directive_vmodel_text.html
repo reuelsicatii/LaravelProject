@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue Tutorial - Directive(Text): V-Model</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://app.laravel/css/custom.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+	<div class="container" id="main">
+		<br />
+		<h1>
+			<a :href="url">Directive(Text): V-Model</a>
+
+		</h1>
+		<br />
+		<div class="row">
+			<div class="col-sm-6">
+				<small>Original</small>
+				<input v-model="message" :placeholder ="placeholder" type="text" class="form-control">
+			</div>
+			<div class="col-sm-6">
+				<small>Copy - Original</small>
+				<p class="d-block p-2 bg-primary text-white">{{message}}</p>
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<!-- <script src="http://app.laravel/js/custom.js"></script> -->
+	<script>
+		let vm = new Vue({
+
+			el : '#main',
+			data : {
+				message : '',
+				placeholder: 'Place your text here'
+				
+			}
+
+		})
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+/*  FLEX TUTORIAL   */
+/*  =============   */
+.flex header {
+	background-color: #00ff00;
+	height: 100px;
+}
+
+.flex .content {
+	display: flex;
+	height: 200px;
+}
+
+.flex .content-nav {
+	width: 20%
+}
+
+.flex .content-main {
+	width: 80%;
+	height: 100%;
+}
+
+.flex aside {
+	background-color: #0080ff;
+	height: 50px;
+}
+
+.flex nav {
+	background-color: #80ff80;
+	height: 150px;
+}
+
+.flex main {
+	background-color: #ff0080;
+	height: 33.33%;
+}
+
+.flex footer {
+	background-color: #999;
+	height: 100px;
+}
+
+
+/*  GRIDPERCENTAGE TUTORIAL  */
+/*  =======================  */
+
+.grid .percentage {
+	display: grid;
+	grid-template-columns: 33.3% 33.3% 33.3%;
+	max-width: 960px;
+	margin: 0 auto;;
+}
+
+.gridpercentage {
+	background: #3bbced;
+	height: 40px;
+	color: #fff;
+	text-align: center;
+}
+
+.gridpercentage:nth-child(even) {
+	background: #777;
+	color: #fff;
+	text-align: center;
+}
+
+
+/*  GRIDFRACTION TUTORIAL  */
+/*  =======================  */
+
+.grid .fraction {
+	display: grid;
+	grid-template-columns: 1fr 2fr 3fr;
+	max-width: 960px;
+	margin: 0 auto;;
+}
+
+.gridfraction {
+	background: #0000ff;
+	height: 40px;
+	color: #fff;
+	text-align: center;
+}
+
+.gridfraction:nth-child(even) {
+	background: #777;
+	color: #fff;
+	text-align: center;
+}
+
+/*  GRIDREPEAT TUTORIAL  */
+/*  =======================  */
+
+.grid .repeat {
+	display: grid;
+	grid-template-columns: repeat(1, 10px [col-start] 30% [col-middle] auto [col-end]);
+	max-width: 960px;
+	margin: 0 auto;;
+}
+
+.gridrepeat {
+	background: #ff80c0;
+	height: 40px;
+	color: #fff;
+	text-align: center;
+}
+
+.gridrepeat:nth-child(even) {
+	background: #777;
+	color: #fff;
+	text-align: center;
+}

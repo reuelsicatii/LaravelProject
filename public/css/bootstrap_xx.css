@@ -1,0 +1,51 @@
+/*  BOOTSTRAP TUTORIAL   */
+/*  =============   */
+
+/*
+.row div {
+	background: #0000ff;
+	border: 1px solid red;
+	color: white;
+}
+
+.row div:nth-child(even) {
+	background: #777;
+	border: 1px solid red;
+	color: white;
+}
+*/
+
+.container {
+	margin: 10px;
+	background: #98c1e7;
+	height: 100px;
+}
+
+.container-fluid {
+	margin: 10px;
+	background: #9e96e9;
+	height: 100px;
+}
+
+.col {
+	padding: 15px;
+	background: #abb1b8;
+}
+
+.row {
+	margin-top: 1rem;
+	background: #dbdfe5;
+}
+
+.row {
+	margin-top: 1rem;
+	background: #dbdfe5;
+}
+
+.row div {
+	border: 4px solid red;
+}
+
+.row div:nth-child(even) {
+	border: 4px solid blue;
+}

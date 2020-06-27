@@ -14,6 +14,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Tutorial for CSS + BootStrap
+// ==========================================
+Route::get('/tutpages/{name}', function ($name) {
+
+    return view('tutpages.' . $name);
+});
+
+// Vue.js Tutorial
+// ==========================================
+Route::get('/vue/{name}', function ($name) {
+
+    return view('vue.' . $name);
+});
+
+// Vue Master Tutorial
+// ==========================================
+Route::get('/vue_m/{name}', function ($name) {
+
+    return view('vue_m.' . $name);
+});
+
+// Bihaku FrontEnd Projects
+// ==========================================
+Route::get('/bihaku/{name}', function ($name) {
+
+    return view('bihaku.' . $name);
+});
+
+// Tutorial for Static Views
+// ==========================================
 Route::get('/StaticRoute', function () {
     $data = array(
         'title' => 'StaticRoute',
@@ -26,6 +56,8 @@ Route::get('/StaticRoute', function () {
     return view('pages.staticroute')->with($data);
 });
 
+// Tutorial for Dynamic Views
+// ==========================================
 Route::get('/DynamicRoute/{name}', function ($name) {
     return view('pages.page02')->with('name', $name);
 });
@@ -33,11 +65,13 @@ Route::get('/DynamicRoute/{name}', function ($name) {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/pages/home', 'PagesController@home');
+// Route::get('/pages/home', 'PagesController@home');
 Route::get('/pages/index', 'PagesController@index');
 Route::get('/pages/about', 'PagesController@about');
 Route::get('/pages/services', 'PagesController@services');
 
-Route::resource('post','PostController');
-Route::resource('category','CategoryController');
-Route::resource('service','ServiceController');
+// Tutorial Post + Category + Service Routes
+// ==========================================
+Route::resource('post', 'PostController');
+Route::resource('category', 'CategoryController');
+Route::resource('service', 'ServiceController');

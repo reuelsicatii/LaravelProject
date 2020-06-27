@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+.active {
+	color: green;
+}
+
+.notActive {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container" id="main">
+		<br />
+		<h1>
+			<a>Vue Tutorial - Attribute Binding01</a>
+		</h1>
+		<br />
+		<div class="row px-5">
+			<h3>
+				<a>{{name}}{{position === 'Slave' ? ' is Slave' : ' is Master'}}</a>
+			</h3>
+		</div>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		let vm = new Vue({
+
+			el : '#main',
+			data : {
+				name : 'Reuel Sicat',
+				position : 'Slave'
+			},
+			
+			watch :{
+				position(newValue){
+					 console.log('Sending an email - ' + newValue)
+				}
+			}
+		})
+	</script>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
